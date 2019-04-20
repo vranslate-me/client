@@ -12,7 +12,15 @@ export default class VR extends React.Component {
   render() {
     return (
       <Router>
-        <View>
+        <View
+          style={{
+            width: 4000,
+            height: 500,
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
           <Route exact path="/" component={Menu} />
           <Route exact path="/level1" component={Park} />
           <Route exact path="/level2" component={Room} />
