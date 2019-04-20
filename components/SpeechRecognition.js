@@ -29,7 +29,7 @@ export default class SpeechRecognition extends React.Component {
             word: output
           })
           this.setState({ interactionActive: false });
-          this.props.outputHandler(output, data);
+          this.props.outputHandler(output, data.translated);
         }
 
         // Stop
