@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-360'
 import SpeechRecognition from './SpeechRecognition'
-import SpeechResult from './SpeechResult'
-import axios from 'axios'
 
 export default class Word extends Component {
   state = {
@@ -21,22 +19,6 @@ export default class Word extends Component {
       console.log('poof')
       this.props.removeWord(this.props.word)
     }
-  }
-
-  componentDidMount() {
-    // axios
-    //   .post('http://localhost:3000/translate', {
-    //     word: this.props.word
-    //   })
-    //   .then(({ data }) => {
-    //     console.log(data)
-    //     this.setState({
-    //       translated: data
-    //     })
-    //   })
-    //   .catch(err => {
-    //     console.log(err.message)
-    //   })
   }
 
   render() {
@@ -61,7 +43,7 @@ export default class Word extends Component {
           alignItems: 'center'
         }}
       >
-        <SpeechResult checkWord={this.checkWord} word={this.props.word} results={this.state.spokenWords} />
+        <Text style={{color: 'red'}}>{this.props.word}</Text>
         {recording}
       </View>
     )
