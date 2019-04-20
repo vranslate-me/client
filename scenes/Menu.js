@@ -10,15 +10,15 @@ import {
 export default class Menu extends React.Component {
   render() {
     return (
-      <View style={{
-        width: 1200,
-        height: 500,
-        backgroundColor: 'lightgrey',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-
-        <Text style={{color: 'black'}}>Ini menu</Text>
+      <View 
+        style={{
+          width: 1200,
+          height: 500,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <Text style={{color: 'white'}}>Ini menu</Text>
         
         <VrButton
           style={{

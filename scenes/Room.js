@@ -7,6 +7,8 @@ import {
   VrButton
 } from 'react-360';
 
+import Word from '../components/Word'
+
 export default class Room extends React.Component {
   render() {
     return (
@@ -14,12 +16,11 @@ export default class Room extends React.Component {
         style={{
           width: 1200,
           height: 500,
-          backgroundColor: 'lightgrey',
           justifyContent: 'center',
           alignItems: 'center'
         }}
       >
-        <Text style={{color: 'black'}}>Ini room level</Text>
+        <Text style={{color: 'white'}}>Ini room level</Text>
         
         <VrButton
           style={{
