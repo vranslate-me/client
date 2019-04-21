@@ -43,6 +43,17 @@ export default class Menu extends React.Component {
           <Text style={{color: 'white', fontSize: 60}}>Room level</Text>
         </VrButton>
 
+        <VrButton
+          style={{
+            width: 300,
+            // height: 50,
+            backgroundColor: 'black'
+          }}
+          onClick={() => this.props.history.push('/level3')}
+        >
+          <Text style={{color: 'white', fontSize: 60}}>Bar level</Text>
+        </VrButton>
+
       </View>
     );
   }

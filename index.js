@@ -7,6 +7,7 @@ import { MemoryRouter as Router, Route } from 'react-router'
 import Menu from './scenes/Menu'
 import Park from './scenes/Park'
 import Room from './scenes/Room'
+import Bar from './scenes/Bar'
 
 export default class VR extends React.Component {
   render() {
@@ -25,6 +26,7 @@ export default class VR extends React.Component {
           <Route exact path="/" component={Menu} />
           <Route exact path="/level1" component={Park} />
           <Route exact path="/level2" component={Room} />
+          <Route exact path="/level3" component={Bar} />
         </View>
       </Router>
     );
