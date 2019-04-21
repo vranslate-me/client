@@ -18,13 +18,18 @@ function init(bundle, parent, options = {}) {
 
   const s = r360.getDefaultSurface()
   s.setShape(Surface.SurfaceShape.Cylinder)
-  s.resize(4000, 1000)
+  s.resize(4096, 720)
 
   // Render your app content to the default cylinder surface
   r360.renderToSurface(
     r360.createRoot('VR', { /* initial props */ }),
     s
   );
+
+  // r360.renderToLocation(
+  //   r360.createRoot('Boat', { /* initial props */ }),
+  //   r360.getDefaultLocation(),
+  // );
 
   // Load the initial environment
   r360.compositor.setBackground(r360.getAssetURL('360_world.jpg'));

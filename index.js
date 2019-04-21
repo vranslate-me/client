@@ -14,9 +14,10 @@ export default class VR extends React.Component {
       <Router>
         <View
           style={{
-            width: 4000,
-            height: 500,
-            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            width: 4096,
+            height: 720,
+            borderWidth: 1,
+            borderColor: 'white',
             justifyContent: 'center',
             alignItems: 'center'
           }}

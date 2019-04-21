@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  VrButton
+  VrButton,
+  Environment,
+  asset
 } from 'react-360';
 
 import Word from '../components/Word'
+import Boat from '../components/Boat'
+import Doggo from '../components/Doggo'
 
 export default class Park extends React.Component {
   state = {
     words: [
-      {active: false, word: 'chicken', position: [400, 0, 0]}, 
-      {active: false, word: 'dog', position: [1000, -200, 0]}
+      {active: false, word: 'boat', position: [1600, -270, 0]}, 
+      {active: false, word: 'tree', position: [3100, -100, 0]},
+      {active: false, word: 'duck', position: [2400, -400, 0]},
+      {active: false, word: 'dog', position: [3700, -230, 0]},
     ]
+  }
+
+  componentDidMount() {
+    Environment.setBackgroundImage(asset('park.jpg'), {transition: 0.5})
   }
 
   removeWord(word) {
@@ -58,14 +68,17 @@ export default class Park extends React.Component {
           // alignItems: 'center'
         }}
       >
-        <Text style={{color: 'white', alignSelf: 'center'}}>Ini park level</Text>
+        <Boat />
+        <Doggo />
 
         <VrButton
           style={{
-            width: 100,
+            width: 200,
             height: 50,
             backgroundColor: 'black',
-            alignSelf: 'center'
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
           onClick={() => this.props.history.push('/')}
         >
@@ -80,7 +93,7 @@ export default class Park extends React.Component {
                 style={{
                   width: 200,
                   height: 50,
-                  // position: 'absolute',
+                  position: 'absolute',
                   transform: [
                     {translate: item.position}
                   ]
@@ -98,3 +111,5 @@ export default class Park extends React.Component {
     );
   }
 };
+
+// AppRegistry.registerComponent('Boat', () => Boat)

@@ -4,7 +4,6 @@ import SpeechRecognition from './SpeechRecognition'
 
 export default class Word extends Component {
   state = {
-    // translated: 'balbalbalbal',
     spokenWords: ''
   }
 
@@ -15,7 +14,7 @@ export default class Word extends Component {
       spokenWords: word
     })
 
-    if(translated === this.props.word) {
+    if(translated === this.props.word && word !== this.props.word) {
       console.log('poof')
       this.props.removeWord(this.props.word)
     }
@@ -24,26 +23,19 @@ export default class Word extends Component {
   render() {
     const recording = this.props.enableSpeaking ? 
       <SpeechRecognition speaking={this.props.enableSpeaking} outputHandler={this.speechRetriever.bind(this)} /> 
-      : <View 
-          style={{
-            width: '100%',
-            height: '100%',
-            alignItems: 'center'
-          }}
-        >
-          <Text style={{color: 'black'}}>gaze me</Text>
-        </View>
+      : null
     return (
       <View
         style={{
           width: '100%',
           height: 150,
           borderWidth: 3,
-          borderColor: 'black',
+          borderColor: 'lightgrey',
           alignItems: 'center'
         }}
       >
-        <Text style={{color: 'red'}}>{this.props.word}</Text>
+        <Text style={{color: 'red', fontSize: 50}}>{this.props.word}</Text>
+        <Text style={{color: 'red', fontSize: 50}}>{this.state.spokenWords}</Text>
         {recording}
       </View>
     )
