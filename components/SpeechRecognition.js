@@ -29,7 +29,7 @@ export default class SpeechRecognition extends React.Component {
             word: output
           })
           this.setState({ interactionActive: false });
-          this.props.outputHandler(output, data.translated);
+          this.props.outputHandler(output, data.translated.toLowerCase());
         }
 
         // Stop
@@ -43,7 +43,7 @@ export default class SpeechRecognition extends React.Component {
 
       if(this.state.interactionActive) {
         output = (
-          <Text style={{color: 'black', fontSize: 40}}>Recording..</Text>
+          <Text style={{color: 'black', marginTop: 40, fontSize: 40}}>Recording..</Text>
         );
       }
 
@@ -53,7 +53,6 @@ export default class SpeechRecognition extends React.Component {
             width: '100%',
             height: '100%',
             position: 'absolute',
-            marginTop: 40,
             alignItems: 'center'
           }}
           onEnter={ this.onGazeEnter.bind(this) }

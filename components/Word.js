@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-360'
+import { Text, View, StyleSheet, NativeModules, asset } from 'react-360'
 import SpeechRecognition from './SpeechRecognition'
+
+//Audio Effect
+const {AudioModule} = NativeModules;
 
 export default class Word extends Component {
   state = {
@@ -10,13 +13,22 @@ export default class Word extends Component {
   speechRetriever(word, translated) {
     console.log(this.props.word, 'kata yang di tes')
     console.log(translated, 'hasil google translate')
-    this.setState({
-      spokenWords: word
-    })
 
     if(translated === this.props.word && word !== this.props.word) {
       console.log('poof')
+      AudioModule.playOneShot({
+        source: asset('./Bar/wowwww.mp3'),
+        volume: 0.3,
+      })
       this.props.removeWord(this.props.word)
+    } else {
+      AudioModule.playOneShot({
+        source: asset('./Bar/wrong_buzz.mp3'),
+        volume: 0.3,
+      })
+      this.setState({
+        spokenWords: word
+      })
     }
   }
 

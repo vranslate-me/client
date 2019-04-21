@@ -6,19 +6,21 @@ import {
   View,
   VrButton,
   Environment,
-  asset
+  asset,
+  NativeModules
 } from 'react-360';
 
 import Word from '../components/Word'
-import Boat from '../components/Boat'
-import Doggo from '../components/Doggo'
+
+//Audio Effect
+const {AudioModule} = NativeModules;
 
 export default class Park extends React.Component {
   state = {
     words: [
       {active: false, word: 'stairs', position: [1800, -450, 0]}, 
       {active: false, word: 'table', position: [735, -310, 0]},
-      {active: false, word: 'lamp', position: [2200, -55, 0]},
+      {active: false, word: 'light', position: [2200, -55, 0]},
       {active: false, word: 'television', position: [610, -40, 0]},
       {active: false, word: 'cup', position: [145, -370, 0]},
     ]
@@ -51,6 +53,14 @@ export default class Park extends React.Component {
       }
       if(i === index) {
         obj.active = bool
+        if (obj.active) {
+            AudioModule.playEnvironmental({
+                source: asset('./Bar/ticktock.mp3'),
+                volume: 0.3,
+            })
+        } else {
+            AudioModule.stopEnvironmental()
+        }
       }
       data.push(obj)
     }
