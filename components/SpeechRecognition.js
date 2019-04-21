@@ -43,7 +43,7 @@ export default class SpeechRecognition extends React.Component {
 
       if(this.state.interactionActive) {
         output = (
-          <Text style={{color: 'black'}}>Recording..</Text>
+          <Text style={{color: 'black', fontSize: 40}}>Recording..</Text>
         );
       }
 
@@ -52,6 +52,8 @@ export default class SpeechRecognition extends React.Component {
           style={{
             width: '100%',
             height: '100%',
+            position: 'absolute',
+            marginTop: 40,
             alignItems: 'center'
           }}
           onEnter={ this.onGazeEnter.bind(this) }

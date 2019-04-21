@@ -18,28 +18,29 @@ export default class Menu extends React.Component {
           alignItems: 'center'
         }}
       >
-        <Text style={{color: 'white'}}>Ini menu</Text>
+        <Text style={{color: 'white', fontSize: 60}}>Ini menu</Text>
         
         <VrButton
           style={{
-            width: 100,
-            height: 50,
-            backgroundColor: 'black'
+            width: 300,
+            // height: 50,
+            backgroundColor: 'black',
+            marginBottom: 10
           }}
           onClick={() => this.props.history.push('/level1')}
         >
-          <Text style={{color: 'white'}}>Park level</Text>
+          <Text style={{color: 'white', fontSize: 60}}>Park level</Text>
         </VrButton>
 
         <VrButton
           style={{
-            width: 100,
-            height: 50,
+            width: 300,
+            // height: 50,
             backgroundColor: 'black'
           }}
           onClick={() => this.props.history.push('/level2')}
         >
-          <Text style={{color: 'white'}}>Room level</Text>
+          <Text style={{color: 'white', fontSize: 60}}>Room level</Text>
         </VrButton>
 
       </View>
