@@ -16,7 +16,7 @@ export default class Doggo extends Component {
             { rotateX: 90 },
             { rotateY: 180},
             { rotateZ: 120},
-            { scale: 1.5 }
+            { scale: this.props.scale }
           ]
         }}
       />

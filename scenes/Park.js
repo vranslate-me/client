@@ -20,7 +20,8 @@ export default class Park extends React.Component {
       {active: false, word: 'tree', position: [3100, -100, 0]},
       {active: false, word: 'duck', position: [2400, -400, 0]},
       {active: false, word: 'dog', position: [3700, -230, 0]},
-    ]
+    ],
+    scaleDog: 1.5
   }
 
   componentDidMount() {
@@ -40,7 +41,7 @@ export default class Park extends React.Component {
     })
   }
 
-  toggleActive(bool, index) {
+  toggleActive(bool, index, word) {
     let data = []
     for (let i = 0; i < this.state.words.length; i++) {
       let obj = {
@@ -54,7 +55,8 @@ export default class Park extends React.Component {
       data.push(obj)
     }
     this.setState({
-      words: data
+      words: data,
+      scaleDog: word === 'dog' && bool ? 2 : 1.5
     })
   }
 
@@ -69,7 +71,7 @@ export default class Park extends React.Component {
         }}
       >
         <Boat />
-        <Doggo />
+        <Doggo scale={this.state.scaleDog} />
 
         <VrButton
           style={{
@@ -97,8 +99,8 @@ export default class Park extends React.Component {
                     { translate: item.position }
                   ]
                 }}
-                onEnter={() => this.toggleActive(true, index)}
-                onExit={() => this.toggleActive(false, index)}
+                onEnter={() => this.toggleActive(true, index, item.word)}
+                onExit={() => this.toggleActive(false, index, item.word)}
                 key={item.word}
               >
                 <Word word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
