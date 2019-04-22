@@ -57,7 +57,6 @@ class Menu extends React.Component {
         Bar: Bar
       }
     });
-    console.log(this.state.scores);
   }
 
   keyboardInput = () => {
@@ -123,9 +122,8 @@ class Menu extends React.Component {
               <Text
                 style={{
                   fontSize: 30,
-                  fontWeight: 'bold',
                   textAlign: 'center'
-                }}>Input Your Name</Text>
+                }}>Click to enter your name</Text>
             </VrButton>
           </View>
           :
@@ -152,7 +150,7 @@ class Menu extends React.Component {
 
 const styles = StyleSheet.create({
   customButton: {
-    width: 300,
+    width: 400,
     padding: 30,
     backgroundColor: '#151517',
     margin: 30,
@@ -160,7 +158,10 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     height: 600,
+    width: 720,
     alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#fff',
     // justifyContent: 'space-around',
     padding: 30,
   }
