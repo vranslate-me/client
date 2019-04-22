@@ -9,21 +9,22 @@ import {
   asset
 } from 'react-360';
 
-import Entity from 'Entity';
+import Word from '../components/Word'
+import Doggo from '../components/Doggo'
 
 export default class Room extends React.Component {
   componentDidMount() {
-    Environment.setBackgroundImage(asset('pertigaan.jpg'))
+    Environment.setBackgroundImage(asset('CannonBeach.jpg'))
   }
 
   render() {
     return (
       <View
         style={{
-          width: 1200,
+          width: 4000,
           height: 500,
-          justifyContent: 'center',
-          alignItems: 'center'
+          // justifyContent: 'center',
+          // alignItems: 'center'
         }}
       >
         <VrButton
@@ -36,6 +37,7 @@ export default class Room extends React.Component {
         >
           <Text style={{ color: 'white' }}>Back to Menu</Text>
         </VrButton>
+        <Doggo />
       </View>
     );
   }
