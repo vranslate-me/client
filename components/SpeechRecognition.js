@@ -25,6 +25,7 @@ export default class SpeechRecognition extends React.Component {
         var output = await this.state.annyang.start();
 
         if(output) {
+          console.log(output)
           const { data } = await axios.post('http://localhost:3000/translate', {
             word: output
           })

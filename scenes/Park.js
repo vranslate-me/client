@@ -87,7 +87,6 @@ export default class Park extends React.Component {
 
         {
           this.state.words.map((item, index) => {
-            console.log(item)
             return (
               <View
                 style={{
@@ -100,7 +99,7 @@ export default class Park extends React.Component {
                 }}
                 onEnter={() => this.toggleActive(true, index)}
                 onExit={() => this.toggleActive(false, index)}
-                key={index}
+                key={item.word}
               >
                 <Word word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
               </View>
