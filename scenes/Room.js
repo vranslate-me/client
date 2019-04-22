@@ -4,15 +4,17 @@ import {
   StyleSheet,
   Text,
   View,
-  VrButton
+  VrButton,
+  Environment,
 } from 'react-360';
 
 import Word from '../components/Word'
 
 export default class Room extends React.Component {
+
   render() {
     return (
-      <View 
+      <View
         style={{
           width: 1200,
           height: 500,
@@ -20,8 +22,7 @@ export default class Room extends React.Component {
           alignItems: 'center'
         }}
       >
-        <Text style={{color: 'white'}}>Ini room level</Text>
-        
+        <Text style={{ color: 'white' }}>Ini room level</Text>
         <VrButton
           style={{
             width: 100,
@@ -30,7 +31,7 @@ export default class Room extends React.Component {
           }}
           onClick={() => this.props.history.push('/')}
         >
-          <Text style={{color: 'white'}}>Back to Menu</Text>
+          <Text style={{ color: 'white' }}>Back to Menu</Text>
         </VrButton>
       </View>
     );

@@ -1,7 +1,7 @@
 // This file contains the boilerplate to execute your React app.
 // If you want to modify your application's content, start in "index.js"
 
-import {ReactInstance, ReactNativeContext, Module, Surface} from 'react-360-web';
+import { ReactInstance, ReactNativeContext, Module, Location, Surface } from 'react-360-web';
 import SimpleRaycaster from 'simple-raycaster'
 import Annyang from './speech/annyang'
 
@@ -26,6 +26,10 @@ function init(bundle, parent, options = {}) {
     s
   );
 
+  // Flat Surface
+  const panelMenu = new Surface(300, 600, Surface.SurfaceShape.Flat);
+  panelMenu.
+
   // r360.renderToLocation(
   //   r360.createRoot('Boat', { /* initial props */ }),
   //   r360.getDefaultLocation(),
@@ -37,4 +41,4 @@ function init(bundle, parent, options = {}) {
   r360.controls.addRaycaster(SimpleRaycaster)
 }
 
-window.React360 = {init};
+window.React360 = { init };
