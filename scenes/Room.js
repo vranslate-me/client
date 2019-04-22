@@ -8,10 +8,13 @@ import {
   Environment,
   asset
 } from 'react-360';
+
 import Entity from 'Entity';
 
-
 export default class Room extends React.Component {
+  componentDidMount() {
+    Environment.setBackgroundImage(asset('pertigaan.jpg'))
+  }
 
   render() {
     return (
