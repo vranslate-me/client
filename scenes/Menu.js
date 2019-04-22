@@ -49,6 +49,10 @@ export default class Menu extends React.Component {
     });
   }
 
+  switchToRoom = () => {
+    this.props.history.push('/level2');
+  }
+
   render() {
     return (
       <View
@@ -84,7 +88,7 @@ export default class Menu extends React.Component {
             </VrButton>
             <VrButton
               style={styles.customButton}
-              onClick={() => this.props.history.push('/level2')}
+              onClick={this.switchToRoom}
             >
               <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold', textAlign: 'center' }}>Room level</Text>
             </VrButton>

@@ -6,9 +6,10 @@ import {
   View,
   VrButton,
   Environment,
+  asset
 } from 'react-360';
+import Entity from 'Entity';
 
-import Word from '../components/Word'
 
 export default class Room extends React.Component {
 
@@ -22,7 +23,6 @@ export default class Room extends React.Component {
           alignItems: 'center'
         }}
       >
-        <Text style={{ color: 'white' }}>Ini room level</Text>
         <VrButton
           style={{
             width: 100,
