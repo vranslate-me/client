@@ -64,6 +64,7 @@ const style = StyleSheet.create({
   },
   drow: {
     width: 130,
+    height: 30,
     fontSize: 25,
     textAlign: 'center',
     // marginBottom: 20,
