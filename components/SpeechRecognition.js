@@ -7,7 +7,9 @@ import {
 
 import axios from 'axios'
 
-export default class SpeechRecognition extends React.Component {
+import { connect } from 'react-redux'
+
+class SpeechRecognition extends React.Component {
 
     constructor(props) {
       super(props);
@@ -18,6 +20,7 @@ export default class SpeechRecognition extends React.Component {
     }
 
     async onGazeEnter() {
+      
       try {
         console.log('Active');
 
@@ -26,7 +29,7 @@ export default class SpeechRecognition extends React.Component {
 
         if(output) {
           console.log(output)
-          const { data } = await axios.post('http://localhost:3000/translate', {
+          const { data } = await axios.post(`http://localhost:3000/translate/${this.props.language}`, {
             word: output
           })
           this.setState({ interactionActive: false });
@@ -64,3 +67,9 @@ export default class SpeechRecognition extends React.Component {
     }
 
 }
+
+const mapStateToProps = (state) => ({
+  language: state.language
+})
+
+export default connect(mapStateToProps)(SpeechRecognition)

@@ -10,28 +10,26 @@ import {
 } from 'react-360';
 
 import Word from '../components/Word'
-import Boat from '../components/Boat'
-import Doggo from '../components/Doggo'
 
-export default class Park extends React.Component {
+export default class LivingRoom extends React.Component {
   state = {
     words: [
-      {active: false, word: 'boat', position: [1600, -270, 0]}, 
-      {active: false, word: 'tree', position: [3100, -100, 0]},
-      {active: false, word: 'duck', position: [2400, -400, 0]},
-      {active: false, word: 'dog', position: [3700, -230, 0]},
-    ],
-    scaleDog: 1.5
+      {active: false, word: 'Art', position: [1500, -50, 0]}, 
+      {active: false, word: 'Mirror', position: [3100, -20, 0]},
+      {active: false, word: 'Plant', position: [2100, -200, 0]},
+      {active: false, word: 'Book', position: [1400, -300, 0]},
+      {active: false, word: 'Door', position: [2700, -100, 0]},
+    ]
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('park.jpg'))
+    Environment.setBackgroundImage(asset('livingroom.jpg'))
   }
 
   removeWord(word) {
     let data = []
     for (let i = 0; i < this.state.words.length; i++) {
-      if (this.state.words[i].word !== word) {
+      if (this.state.words[i].word.toLowerCase() !== word) {
         data.push(this.state.words[i])
       }
     }
@@ -70,8 +68,6 @@ export default class Park extends React.Component {
           // alignItems: 'center'
         }}
       >
-        <Boat />
-        <Doggo scale={this.state.scaleDog} />
 
         <VrButton
           style={{
@@ -92,7 +88,7 @@ export default class Park extends React.Component {
             return (
               <View
                 style={{
-                  width: 200,
+                  width: 250,
                   height: 50,
                   position: 'absolute',
                   transform: [

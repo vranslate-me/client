@@ -28,7 +28,7 @@ export default class VR extends React.Component {
             }}
           >
             <Route exact path="/" component={Menu} />
-            <Route exact path="/level1" component={Park} />
+            <Route exact path="/level1" component={LivingRoom} />
             <Route exact path="/level2" component={Room} />
             <Route exact path="/level3" component={Bar} />
           </View>

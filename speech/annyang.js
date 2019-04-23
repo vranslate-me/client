@@ -20,6 +20,13 @@ export default class Annyang extends Module {
     this._rnctx = rnctx;
   }
 
+  setLanguage(language) {
+    if(annyang) {
+      console.log('set language to', language)
+      annyang.setLanguage(language)
+    }
+  }
+
   $start(resolve,reject) {
     this.startListening();
 

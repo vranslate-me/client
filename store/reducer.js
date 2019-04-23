@@ -3,6 +3,7 @@ import * as types from './actionTypes'
 const initialState = {
   loading: false,
   name: '',
+  language: 'id',
   error: null
 }
 
@@ -23,6 +24,12 @@ export default chat = (state = initialState, action) => {
       return {
         ...state,
         loading: false
+      }
+    case types.SET_LANGUAGE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        language: action.language
       }
     case types.ERROR:
       return {
