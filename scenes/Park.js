@@ -8,7 +8,6 @@ import {
   Environment,
   asset
 } from 'react-360';
-import Entity from 'Entity';
 
 import Word from '../components/Word'
 import Boat from '../components/Boat'
@@ -25,7 +24,7 @@ export default class Park extends React.Component {
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('park.jpg'), {transition: 0.5})
+    Environment.setBackgroundImage(asset('park.jpg'))
   }
 
   removeWord(word) {

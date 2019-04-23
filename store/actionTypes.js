@@ -1,0 +1,4 @@
+export const INPUT_NAME_SUCCESS = 'INPUT_NAME_SUCCESS'
+export const DB_ADD_SCORE_SUCCESS = 'DB_ADD_SCORE_SUCCESS'
+export const ERROR = 'ERROR'
+export const LOADING = 'LOADING'
