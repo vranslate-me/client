@@ -5,11 +5,13 @@ import {
   VrButton,
   Environment,
   asset,
-  NativeModules
+  NativeModules,
+  Pano
 } from 'react-360';
 
 import Word from '../components/Word'
 import Doggo from '../components/Doggo'
+// import Stone from '../components/Stone'
 
 //Audio Effect
 const {AudioModule} = NativeModules;
@@ -17,22 +19,22 @@ const {AudioModule} = NativeModules;
 export default class Room extends React.Component {
   state = {
     words: [
-      {active: false, word: 'dog', position: [2100, -215, 0]}, 
-      {active: false, word: 'table', position: [1000, -100, 0]},
-      {active: false, word: 'light', position: [1200, -150, 0]},
-      {active: false, word: 'television', position: [0, 0, 0]},
-      {active: false, word: 'cup', position: [0, 0, 0]},
-    ]
-    // doggo: {
-    //   scale: 1.75,
-    //   borderWidth: 3, 
-    //   borderColor: 'lightgrey',
-    //   // doggoWidth: 
-    // }
+      {active: false, word: 'dog', position: [2200, -185, 0], height: 200}, 
+      // {active: false, word: 'table', position: [1000, -100, 0]},
+      // {active: false, word: 'light', position: [1200, -150, 0]},
+      // {active: false, word: 'television', position: [0, 0, 0]},
+      // {active: false, word: 'cup', position: [0, 0, 0]},
+    ],
+    dog: {
+      scale: 1.3,
+      borderWidth: 3,
+      borderColor: 'lightgrey',
+      // doggoWidth: 
+    }
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('CannonBeach.jpg'), {transition: 0.5})
+    Environment.setBackgroundImage(asset('hacktiv.jpg'), {transition: 0.5, format: '2D'})
   }
 
   removeWord(word) {
@@ -48,7 +50,7 @@ export default class Room extends React.Component {
     })
   }
 
-  toggleActive(bool, index) {
+  toggleActive(bool, index, name) {
     let data = []
     for(let i = 0; i < this.state.words.length; i++) {
       let obj = {
@@ -63,8 +65,12 @@ export default class Room extends React.Component {
                 source: asset('./Bar/ticktock.mp3'),
                 volume: 0.3,
             })
+            if (name === 'dog') {
+              this.setState({dog: {...this.state.dog, scale: 2.15, borderWidth: 0}})
+            }
         } else {
             AudioModule.stopEnvironmental()
+            if (name === 'dog') this.setState({dog: {...this.state.dog, scale: 1.3, borderWidth: 3}})
         }
       }
       data.push(obj)
@@ -98,6 +104,10 @@ export default class Room extends React.Component {
           <Text style={{color: 'white'}}>Back to Menu</Text>
         </VrButton>
 
+        {/* <Stone /> */}
+
+        <Doggo scale={this.state.dog.scale} />
+
         {
           this.state.words.map((item, index) => {
             console.log(item)
@@ -111,11 +121,11 @@ export default class Room extends React.Component {
                     {translate: item.position}
                   ]
                 }}
-                onEnter={() => this.toggleActive(true, index)}
-                onExit={() => this.toggleActive(false, index)}
+                onEnter={() => this.toggleActive(true, index, item.word)}
+                onExit={() => this.toggleActive(false, index, item.word)}
                 key={index}
               >
-                <Word word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
+                <Word borderW={this.state[item.word].borderWidth} word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
               </View>
             )
           })

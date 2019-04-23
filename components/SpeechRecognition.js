@@ -3,14 +3,16 @@ import {
   Text,
   View,
   NativeModules,
+  Environment,
 } from 'react-360';
 
 import axios from 'axios'
+import { AudioModule } from NativeModules
 
 import { connect } from 'react-redux'
 
 class SpeechRecognition extends React.Component {
-
+//Audio Effect
     constructor(props) {
       super(props);
       this.state = {
@@ -34,6 +36,7 @@ class SpeechRecognition extends React.Component {
           })
           this.setState({ interactionActive: false });
           this.props.outputHandler(output, data.translated.toLowerCase());
+          AudioModule.stopEnvironmental()
         }
 
         // Stop
