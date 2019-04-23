@@ -15,7 +15,7 @@ export default class Word extends Component {
     console.log(this.props.word, 'kata yang di tes')
     console.log(translated, 'hasil google translate')
 
-    if(translated === this.props.word.toLowerCase() && word !== this.props.word.toLowerCase()) {
+    if(translated === this.props.word.toLowerCase() && word.toLowerCase() !== this.props.word.toLowerCase()) {
       console.log('poof')
       AudioModule.playOneShot({
         source: asset('./Bar/wowwww.mp3'),

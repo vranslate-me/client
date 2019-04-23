@@ -19,11 +19,16 @@ export default class LivingRoom extends React.Component {
       {active: false, word: 'Plant', position: [2100, -200, 0]},
       {active: false, word: 'Book', position: [1400, -300, 0]},
       {active: false, word: 'Door', position: [2700, -100, 0]},
-    ]
+    ],
+    score: 0,
+    totalWords: 0
   }
 
   componentDidMount() {
     Environment.setBackgroundImage(asset('livingroom.jpg'))
+    this.setState({
+      totalWords: this.state.words.length
+    })
   }
 
   removeWord(word) {
