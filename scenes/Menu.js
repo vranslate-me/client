@@ -18,6 +18,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { inputName, setLanguage } from '../store/actions';
 
+const { AudioModule } = NativeModules
+
 AppRegistry.registerComponent(...registerKeyboard);
 
 class Menu extends React.Component {
@@ -29,9 +31,12 @@ class Menu extends React.Component {
     },
     annyang: NativeModules.Annyang,
     languages: [
-      { code: 'id', name: 'Indonesia' },
-      { code: 'ja', name: 'Japan' },
-      { code: 'zh-CN', name: 'Chinese' },
+      { code: 'id', name: 'Indonesia', flag: asset('./Flags/Indonesia.png'), anthem: asset('./Anthem/Indonesia.mp3')},
+      { code: 'ja', name: 'Japan', flag: asset('./Flags/Japan.png'), anthem: asset('./Anthem/Japan.mp3') },
+      { code: 'zh-CN', name: 'Chinese', flag: asset('./Flags/China.png'), anthem: asset('./Anthem/China.mp3') },
+      { code: 'ru', name: 'Russia', flag: asset('./Flags/Russia.png'), anthem: asset('./Anthem/Russia.mp3') },
+      { code: 'ko', name: 'Korea', flag: asset('./Flags/Korea.jpg'), anthem: asset('./Anthem/Korea.mp3') },
+      { code: 'tr', name: 'Turkey', flag: asset('./Flags/Turkey.jpg'), anthem: asset('./Anthem/Turkey.mp3') },
     ],
     stage: [
       { name: 'Living Room', level: 'level1', image: asset('livingroom.jpg') },
@@ -70,6 +75,13 @@ class Menu extends React.Component {
     this.props.setLanguage(language)
   }
 
+  playAnthem = (index) => {
+    AudioModule.playEnvironmental({
+      source: this.state.languages[index].anthem,
+      volume: 0.3
+    })
+  }
+
   render() {
     return (
       <View
@@ -91,21 +103,33 @@ class Menu extends React.Component {
           {
             this.state.languages.map((language, index) => {
               return (
-                <VrButton
-                  style={styles.customButton}
-                  onClick={() => this.selectLanguage(language.code)}
-                  key={language.code}
+                <View
+                    onEnter={() => {this.playAnthem(index)}}
+                    onExit={() => AudioModule.stopEnvironmental()}
+                    key={language.code}
                 >
-                  <Text
-                    style={{
-                      fontSize: 30,
-                      fontWeight: 'bold',
-                      textAlign: 'center'
-                    }}
-                  >
-                    {language.name}
-                  </Text>
-                </VrButton>
+                  <VrButton onClick={() => this.selectLanguage(language.code)}>
+                      <Image
+                        source={language.flag}
+                        style={styles.customFlag}
+                      />
+                  </VrButton>
+                </View>
+                // <VrButton
+                //   style={styles.customButton}
+                //   onClick={() => this.selectLanguage(language.code)}
+                //   key={language.code}
+                // >
+                //   <Text
+                //     style={{
+                //       fontSize: 30,
+                //       fontWeight: 'bold',
+                //       textAlign: 'center'
+                //     }}
+                //   >
+                //     {language.name}
+                //   </Text>
+                // </VrButton>
               )
             })
           }
@@ -153,6 +177,14 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#151517',
     margin: 30,
+    justifyContent: 'space-between'
+  },
+  customFlag: {
+    width: 100,
+    height: 50,
+    padding: 20,
+    backgroundColor: '#151517',
+    margin: 20,
     justifyContent: 'space-between'
   },
   thumbnailButton: {
