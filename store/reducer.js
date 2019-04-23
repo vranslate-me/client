@@ -4,6 +4,11 @@ const initialState = {
   loading: false,
   name: 'a',
   language: 'id',
+  languageName: 'Indonesia',
+  scores: {
+    Room: [],
+    Beach: []
+  },
   error: null
 }
 
@@ -20,6 +25,12 @@ export default chat = (state = initialState, action) => {
         name: action.name,
         loading: false
       }
+    case types.DB_FETCH_SCORE_SUCCESS:
+      return {
+        ...state,
+        scores: action.scores,
+        loading: false
+      }
     case types.DB_ADD_SCORE_SUCCESS:
       return {
         ...state,
@@ -29,7 +40,8 @@ export default chat = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        language: action.language
+        language: action.language.code,
+        languageName: action.language.name
       }
     case types.ERROR:
       return {

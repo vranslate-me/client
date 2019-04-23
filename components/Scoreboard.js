@@ -66,7 +66,7 @@ const style = StyleSheet.create({
     width: 130,
     fontSize: 25,
     textAlign: 'center',
-    marginBottom: 20,
+    // marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#fff'
   }

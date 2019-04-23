@@ -11,7 +11,11 @@ import {
 
 import Word from '../components/Word'
 
-export default class LivingRoom extends React.Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { dbAddScore } from '../store/actions';
+
+class LivingRoom extends React.Component {
   state = {
     words: [
       {active: false, word: 'Art', position: [1500, -50, 0]}, 
@@ -19,11 +23,27 @@ export default class LivingRoom extends React.Component {
       {active: false, word: 'Plant', position: [2100, -200, 0]},
       {active: false, word: 'Book', position: [1400, -300, 0]},
       {active: false, word: 'Door', position: [2700, -100, 0]},
-    ]
+    ],
+    score: 0,
+    totalWords: 0
   }
 
   componentDidMount() {
     Environment.setBackgroundImage(asset('livingroom.jpg'))
+    this.setState({
+      totalWords: this.state.words.length
+    })
+  }
+
+  async backToMenu() {
+    const data = {
+      name: this.props.name,
+      level: 1,
+      score: this.state.score / this.state.totalWords * 100,
+      lang: this.props.languageName
+    }
+    console.log(data)
+    await this.props.dbAddScore(data, this.props.history)
   }
 
   removeWord(word) {
@@ -35,7 +55,8 @@ export default class LivingRoom extends React.Component {
     }
     console.log(data)
     this.setState({
-      words: data
+      words: data,
+      score: this.state.score + 1
     })
   }
 
@@ -53,8 +74,7 @@ export default class LivingRoom extends React.Component {
       data.push(obj)
     }
     this.setState({
-      words: data,
-      scaleDog: word === 'dog' && bool ? 2 : 1.5
+      words: data
     })
   }
 
@@ -78,7 +98,7 @@ export default class LivingRoom extends React.Component {
             justifyContent: 'center',
             alignItems: 'center'
           }}
-          onClick={() => this.props.history.push('/')}
+          onClick={() => this.backToMenu()}
         >
           <Text style={{ color: 'white' }}>Back to Menu</Text>
         </VrButton>
@@ -108,3 +128,15 @@ export default class LivingRoom extends React.Component {
     );
   }
 };
+
+const mapStateToProps = (state) => ({
+  loading: state.loading,
+  name: state.name,
+  languageName: state.languageName
+})
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  dbAddScore
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(LivingRoom)
