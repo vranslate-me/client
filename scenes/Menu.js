@@ -17,7 +17,7 @@ import Scoreboard from '../components/Scoreboard';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { inputName, setLanguage } from '../store/actions'
+import { inputName, setLanguage } from '../store/actions';
 
 AppRegistry.registerComponent(...registerKeyboard);
 
