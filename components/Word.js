@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, NativeModules, asset } from 'react-360'
-import SpeechRecognition from './SpeechRecognition'
+import SpeechRecognition from './SpeechRecognition';
+import Pointer from '../components/Pointer';
 
 //Audio Effect
 const {AudioModule} = NativeModules;
@@ -45,7 +46,8 @@ export default class Word extends Component {
           borderColor: 'lightgrey',
           alignItems: 'center'
         }}
-      >
+      >   
+        <Pointer />     
         <Text style={{color: 'red', fontSize: 50}}>{this.props.word}</Text>
         <Text style={{color: 'red', fontSize: 50}}>{this.state.spokenWords}</Text>
         {recording}

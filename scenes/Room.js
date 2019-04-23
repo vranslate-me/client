@@ -16,7 +16,6 @@ import Doggo from '../components/Doggo'
 
 //Audio Effect
 const {AudioModule} = NativeModules;
-import Pointer from '../components/Pointer';
 
 export default class Room extends React.Component {
   state = {
@@ -107,7 +106,6 @@ export default class Room extends React.Component {
         </VrButton>
 
         {/* <Stone /> */}
-
         <Doggo scale={this.state.dog.scale} />
 
         {
