@@ -10,10 +10,11 @@ export default class Scoreboard extends Component {
           {Object.keys(this.props.scores).map(lvl => {
             return (
               <View key={lvl} style={{ flexDirection: 'column', alignItems: 'center' }}>
-                <Text style={{ textAlign: 'center', fontSize: 30 }}>{lvl}</Text>
+                <Text style={{ alignSelf: 'center', fontSize: 30 }}>{lvl}</Text>
                 <View style={{ flexDirection: 'row', marginBottom: 20, borderBottomWidth: 2, borderColor: 'white' }}>
                   <Text style={style.drow}>Name</Text>
                   <Text style={style.drow}>Score</Text>
+                  <Text style={style.drow}>Language</Text>
                 </View>
                 <View style={{ position: 'absolute', transform: [{ translate: [0, -100, 0] }] }}>
                   {!this.props.scores[lvl] ?
@@ -27,6 +28,7 @@ export default class Scoreboard extends Component {
                           <View key={e._id} style={{ flexDirection: 'row' }}>
                             <Text style={style.drow}>{e.name}</Text>
                             <Text style={style.drow}>{e.score}</Text>
+                            <Text style={style.drow}>{e.language}</Text>
                           </View>
                         )
                       })}
@@ -45,7 +47,7 @@ const style = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#fff',
     transform: [
-      { translate: [900, 0, 0] },
+      { translate: [1000, 0, 0] },
     ],
     position: 'absolute',
     width: 900,
@@ -54,7 +56,7 @@ const style = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 40
+    fontSize: 50
   },
   scores: {
     marginHorizontal: 20,
