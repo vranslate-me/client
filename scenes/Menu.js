@@ -24,9 +24,8 @@ class Menu extends React.Component {
 
   state = {
     scores: {
-      Park: [],
       Room: [],
-      Bar: []
+      Beach: []
     },
     annyang: NativeModules.Annyang,
     languages: [
@@ -47,15 +46,13 @@ class Menu extends React.Component {
       method: 'get'
     })
 
-    let Park = data.filter(e => e.level === 1);
-    let Room = data.filter(e => e.level === 2);
-    let Bar = data.filter(e => e.level === 3);
-
+    let Room = data.filter(e => e.level === 1);
+    let Beach = data.filter(e => e.level === 2);
+   
     this.setState({
       scores: {
-        Park: Park,
-        Room: Room,
-        Bar: Bar
+        Room,
+        Beach
       }
     });
   }

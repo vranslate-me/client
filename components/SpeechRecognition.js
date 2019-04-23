@@ -7,6 +7,7 @@ import {
 } from 'react-360';
 
 import axios from 'axios'
+const {AudioModule} = NativeModules;
 
 import { connect } from 'react-redux'
 
@@ -23,7 +24,6 @@ class SpeechRecognition extends React.Component {
     }
 
     async onGazeEnter() {
-      
       try {
         console.log('Active');
 
