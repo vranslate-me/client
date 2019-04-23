@@ -15,7 +15,7 @@ import { registerKeyboard } from 'react-360-keyboard';
 import axios from 'axios';
 import Scoreboard from '../components/Scoreboard';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { inputName, setLanguage } from '../store/actions'
 
