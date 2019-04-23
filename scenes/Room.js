@@ -36,7 +36,7 @@ export default class Room extends React.Component {
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('hacktiv.jpg'), {transition: 0.5, format: '2D'})
+    Environment.setBackgroundImage(asset('CannonBeach.jpg'), {transition: 0.5, format: '2D'})
   }
 
   removeWord(word) {
