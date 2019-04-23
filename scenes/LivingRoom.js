@@ -108,5 +108,3 @@ export default class LivingRoom extends React.Component {
     );
   }
 };
-
-// AppRegistry.registerComponent('Boat', () => Boat)
