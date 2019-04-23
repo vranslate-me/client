@@ -12,7 +12,7 @@ export default class Doggo extends Component {
         }}
         style={{
           transform: [
-            { translate: [3800, -380, -50] },
+            { translate: [2200, -400, 250] },//[3800, -380, -50] },
             { rotateX: 90 },
             { rotateY: 180},
             { rotateZ: 120},
