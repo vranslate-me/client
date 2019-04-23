@@ -14,13 +14,13 @@ export default class Word extends Component {
     console.log(this.props.word, 'kata yang di tes')
     console.log(translated, 'hasil google translate')
 
-    if(translated === this.props.word && word !== this.props.word) {
+    if(translated === this.props.word.toLowerCase() && word !== this.props.word.toLowerCase()) {
       console.log('poof')
       AudioModule.playOneShot({
         source: asset('./Bar/wowwww.mp3'),
         volume: 0.3,
       })
-      this.props.removeWord(this.props.word)
+      this.props.removeWord(this.props.word.toLowerCase())
     } else {
       AudioModule.playOneShot({
         source: asset('./Bar/wrong_buzz.mp3'),

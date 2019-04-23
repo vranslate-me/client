@@ -25,6 +25,20 @@ export function inputName(name) {
   }
 }
 
+export function setLanguage(language) {
+  return (dispatch) => {
+    dispatch(loading())
+    dispatch(setLanguageSuccess(language))
+  }
+}
+
+function setLanguageSuccess(language) {
+  return {
+    type: types.SET_LANGUAGE_SUCCESS,
+    language
+  }
+}
+
 function loading() {
   return {
     type: types.LOADING
