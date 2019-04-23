@@ -8,6 +8,7 @@ import {
   NativeModules,
   Pano
 } from 'react-360';
+import Entity from 'Entity';
 
 import Word from '../components/Word'
 import Doggo from '../components/Doggo'
@@ -15,6 +16,7 @@ import Doggo from '../components/Doggo'
 
 //Audio Effect
 const {AudioModule} = NativeModules;
+import Pointer from '../components/Pointer';
 
 export default class Room extends React.Component {
   state = {
