@@ -8,30 +8,32 @@ import {
   NativeModules,
   Pano
 } from 'react-360';
-import Entity from 'Entity';
-
 import Word from '../components/Word'
-import Doggo from '../components/Doggo'
+
+// import Entity from 'Entity';
+// import Doggo from '../components/Doggo'
 // import Stone from '../components/Stone'
 
 //Audio Effect
-const { AudioModule } = NativeModules;
+// const { AudioModule } = NativeModules;
 
 export default class Room extends React.Component {
   state = {
     words: [
-      { active: false, word: 'dog', position: [2200, -185, 0], height: 200 },
-      // {active: false, word: 'table', position: [1000, -100, 0]},
-      // {active: false, word: 'light', position: [1200, -150, 0]},
-      // {active: false, word: 'television', position: [0, 0, 0]},
-      // {active: false, word: 'cup', position: [0, 0, 0]},
+      {
+        active: false, word: 'tree', position: [2330, -30, 0],
+        /* height: 200 */
+      },
+      { active: false, word: 'sunset', position: [940, -220, 0] },
+      { active: false, word: 'stone', position: [370, -100, 0] },
+      { active: false, word: 'cloud', position: [1540, -30, 0] },
+      { active: false, word: 'cliffs', position: [3600, -5, 0] },
     ],
-    dog: {
-      scale: 1.3,
-      borderWidth: 3,
-      borderColor: 'lightgrey',
-      // doggoWidth: 
-    }
+    // dog: {
+    //   scale: 1.3,
+    //   borderWidth: 3,
+    //   borderColor: 'lightgrey',
+    // }
   }
 
   componentDidMount() {
@@ -41,7 +43,7 @@ export default class Room extends React.Component {
   removeWord(word) {
     let data = []
     for (let i = 0; i < this.state.words.length; i++) {
-      if (this.state.words[i].word !== word) {
+      if (this.state.words[i].word.toLowerCase() !== word) {
         data.push(this.state.words[i])
       }
     }
@@ -51,7 +53,7 @@ export default class Room extends React.Component {
     })
   }
 
-  toggleActive(bool, index, name) {
+  toggleActive(bool, index, word) {
     let data = []
     for (let i = 0; i < this.state.words.length; i++) {
       let obj = {
@@ -61,18 +63,19 @@ export default class Room extends React.Component {
       }
       if (i === index) {
         obj.active = bool
-        if (obj.active) {
-          AudioModule.playEnvironmental({
-            source: asset('./Bar/ticktock.mp3'),
-            volume: 0.3,
-          })
-          if (name === 'dog') {
-            this.setState({ dog: { ...this.state.dog, scale: 2.15, borderWidth: 0 } })
-          }
-        } else {
-          AudioModule.stopEnvironmental()
-          if (name === 'dog') this.setState({ dog: { ...this.state.dog, scale: 1.3, borderWidth: 3 } })
-        }
+        // if (obj.active) {
+        // AudioModule.playEnvironmental({
+        //   source: asset('./Bar/ticktock.mp3'),
+        //   volume: 0.3,
+        // })
+        // if (name === 'dog') {
+        //   this.setState({ dog: { ...this.state.dog, scale: 2.15, borderWidth: 0 } })
+        // }
+        // }
+        // else {
+        //   AudioModule.stopEnvironmental()
+        //   if (name === 'dog') this.setState({ dog: { ...this.state.dog, scale: 1.3, borderWidth: 3 } })
+        // }
       }
       data.push(obj)
     }
@@ -106,7 +109,7 @@ export default class Room extends React.Component {
         </VrButton>
 
         {/* <Stone /> */}
-        <Doggo scale={this.state.dog.scale} />
+        {/* <Doggo scale={this.state.dog.scale} /> */}
 
         {
           this.state.words.map((item, index) => {
@@ -125,7 +128,8 @@ export default class Room extends React.Component {
                 onExit={() => this.toggleActive(false, index, item.word)}
                 key={index}
               >
-                <Word borderW={this.state[item.word].borderWidth} word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
+                {/* <Word borderW={this.state[item.word].borderWidth} word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} /> */}
+                <Word word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
               </View>
             )
           })
