@@ -7,9 +7,10 @@ import {
 } from 'react-360';
 
 import axios from 'axios'
-import { AudioModule } from NativeModules
 
 import { connect } from 'react-redux'
+
+const { AudioModule } = NativeModules
 
 class SpeechRecognition extends React.Component {
 //Audio Effect
