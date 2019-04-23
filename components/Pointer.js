@@ -1,40 +1,57 @@
 import React from 'react';
-import { Animated, Image, VrButton, View, asset, Text } from 'react-360';
+import { Animated, asset } from 'react-360';
+
+import Entity from 'Entity';
 import Easing from 'Easing';
 
-export default class Pointer extends React.Component {
-  // static defaultProps = {
-  //   position: [0, 0, -10],
-  //   rotation: [0, 90, 0],
-  //   iconURL: asset('pointer.png')
-  // };
+const AnimatedEntity = Animated.createAnimatedComponent(Entity);
 
-  state = {
-    position: [0, 0, -10],
-    rotation: [0, 90, 0],
+export default class Pointer extends React.Component {
+
+  constructor() {
+    super();
+    this.animatedValue = new Animated.Value(0);
   }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = Object.assign({}, this.props);
-  // }
+
+  componentDidMount() {
+    this.animate()
+  }
+
+  animate() {
+    this.animatedValue.setValue(0)
+    Animated.timing(
+      this.animatedValue,
+      {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear
+      }
+    ).start(() => this.animate())
+  }
 
   render() {
-    console.log(this.props)
+    const rotate = this.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    })
+    const bounce = this.animatedValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [0, 30, 0]
+    })
     return (
-      <Image
+      <AnimatedEntity
+        source={{
+          obj: asset('./Pointer/arrow.obj'),
+          mtl: asset('./Pointer/arrow.mtl')
+        }}
         style={{
-          position: 'absolute',
-          width: 50,
-          height: 50,
           transform: [
-            { rotateX: 30 },
-            { rotateY: 90 },
-            //{ rotateY: 0 },
-            { translate: [1000, -300, -50] }
+            { translateY: bounce },
+            { rotateY: rotate },
+            { scale: 50 }
           ]
         }}
-        source={asset('pointer.png')}>
-      </Image>
+      />
     );
   }
 }

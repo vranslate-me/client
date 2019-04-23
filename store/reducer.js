@@ -2,7 +2,7 @@ import * as types from './actionTypes'
 
 const initialState = {
   loading: false,
-  name: '',
+  name: 'a',
   language: 'id',
   error: null
 }
