@@ -45,9 +45,11 @@ class Menu extends React.Component {
       url: 'http://localhost:3000/scores',
       method: 'get'
     })
+
     let Park = data.filter(e => e.level === 1);
     let Room = data.filter(e => e.level === 2);
     let Bar = data.filter(e => e.level === 3);
+    
     this.setState({
       scores: {
         Park: Park,
