@@ -1,16 +1,35 @@
 import * as types from './actionTypes'
 import axios from 'axios'
 
-export function dbAddScore(name, score, level) {
+export function dbFetchScore() {
+  return async (dispatch) => {
+    dispatch(loading())
+    const { data } = await axios({
+      url: 'http://localhost:3000/scores',
+      method: 'get'
+    })
+
+    const Room = data.filter(e => e.level === 1);
+    const Beach = data.filter(e => e.level === 2);
+
+    const scores = {
+      Room,
+      Beach
+    }
+
+    dispatch(dbFetchScoreSuccess(scores))
+  }
+}
+
+export function dbAddScore(data, history) {
   return (dispatch) => {
     dispatch(loading())
     axios.post('http://localhost:3000/scores', {
-      name,
-      score,
-      level
+      ...data
     })
     .then(({ data }) => {
       dispatch(dbAddScoreSuccess())
+      history.push('/')
     })
     .catch(err => {
       dispatch(error(err.message))
@@ -49,6 +68,13 @@ function inputNameSuccess(name) {
   return {
     type: types.INPUT_NAME_SUCCESS,
     name
+  }
+}
+
+function dbFetchScoreSuccess(scores) {
+  return {
+    type: types.DB_FETCH_SCORE_SUCCESS,
+    scores
   }
 }
 

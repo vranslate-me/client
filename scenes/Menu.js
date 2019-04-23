@@ -16,7 +16,7 @@ import Scoreboard from '../components/Scoreboard';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { inputName, setLanguage } from '../store/actions';
+import { inputName, setLanguage, dbFetchScore } from '../store/actions';
 
 const { AudioModule } = NativeModules
 
@@ -44,22 +44,9 @@ class Menu extends React.Component {
     ]
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     Environment.setBackgroundImage(asset('360_world.jpg'))
-    const { data } = await axios({
-      url: 'http://localhost:3000/scores',
-      method: 'get'
-    })
-
-    let Room = data.filter(e => e.level === 1);
-    let Beach = data.filter(e => e.level === 2);
-   
-    this.setState({
-      scores: {
-        Room,
-        Beach
-      }
-    });
+    this.props.dbFetchScore()
   }
 
   keyboardInput = () => {
@@ -71,7 +58,7 @@ class Menu extends React.Component {
   }
 
   selectLanguage(language) {
-    this.state.annyang.setLanguage(language)
+    this.state.annyang.setLanguage(language.code)
     this.props.setLanguage(language)
   }
 
@@ -108,7 +95,7 @@ class Menu extends React.Component {
                     onExit={() => AudioModule.stopEnvironmental()}
                     key={language.code}
                 >
-                  <VrButton onClick={() => this.selectLanguage(language.code)}>
+                  <VrButton onClick={() => this.selectLanguage(language)}>
                       <Image
                         source={language.flag}
                         style={styles.customFlag}
@@ -134,7 +121,7 @@ class Menu extends React.Component {
             })
           }
         </View>
-        <Scoreboard scores={this.state.scores} />
+        <Scoreboard scores={this.props.scores} />
         {!this.props.name ?
           <View style={styles.menuContainer}>
             <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'center' }}>Welcome To Translate 360</Text>
@@ -206,12 +193,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   loading: state.loading,
   name: state.name,
-  language: state.language
+  language: state.language,
+  scores: state.scores
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   inputName,
-  setLanguage
+  setLanguage,
+  dbFetchScore
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)
