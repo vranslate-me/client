@@ -4,6 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
+  asset,
   VrButton,
   NativeModules,
   Environment,
@@ -75,12 +77,12 @@ class Menu extends React.Component {
   render() {
     return (
       <View
-        style={{
-          width: 1200,
-          height: 500,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
+      /* style={{
+        width: 1200,
+        height: 500,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }} */
       >
         <View style={{
           position: 'absolute',
@@ -150,18 +152,16 @@ class Menu extends React.Component {
 
 const styles = StyleSheet.create({
   customButton: {
-    width: 400,
-    padding: 30,
+    width: 350,
+    padding: 20,
     backgroundColor: '#151517',
     margin: 30,
-    alignItems: 'center'
+    justifyContent: 'space-between'
   },
   menuContainer: {
     height: 600,
     width: 720,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#fff',
     // justifyContent: 'space-around',
     padding: 30,
   }
