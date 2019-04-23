@@ -5,17 +5,23 @@ import {
   Text,
   View,
   VrButton,
-  NativeModules
+  NativeModules,
+  Environment,
+  asset
 } from 'react-360';
 import { registerKeyboard } from 'react-360-keyboard';
 import axios from 'axios';
 import Scoreboard from '../components/Scoreboard';
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { inputName } from '../store/actions'
+
 AppRegistry.registerComponent(...registerKeyboard);
 
-export default class Menu extends React.Component {
+class Menu extends React.Component {
 
   state = {
-    name: '',
     scores: {
       Park: [],
       Room: [],
@@ -24,6 +30,7 @@ export default class Menu extends React.Component {
   }
 
   async componentDidMount() {
+    Environment.setBackgroundImage(asset('360_world.jpg'))
     const { data } = await axios({
       url: 'http://localhost:3000/scores',
       method: 'get'
@@ -45,7 +52,7 @@ export default class Menu extends React.Component {
     NativeModules.Keyboard.startInput({
       placeholder: 'Enter your name',
     }).then(input => {
-      this.setState({ name: input });
+      this.props.inputName(input)
     });
   }
 
@@ -64,7 +71,7 @@ export default class Menu extends React.Component {
         }}
       >
         <Scoreboard scores={this.state.scores} />
-        {!this.state.name ?
+        {!this.props.name ?
           <View style={styles.menuContainer}>
             <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'center' }}>Welcome To Translate 360</Text>
             <VrButton
@@ -80,6 +87,7 @@ export default class Menu extends React.Component {
           </View>
           :
           <View style={styles.menuContainer}>
+            <Text style={{fontSize: 50}}>Welcome, {this.props.name}</Text>
             <VrButton
               style={styles.customButton}
               onClick={() => this.props.history.push('/level1')}
@@ -121,3 +129,14 @@ const styles = StyleSheet.create({
     padding: 30,
   }
 })
+
+const mapStateToProps = (state) => ({
+  loading: state.loading,
+  name: state.name
+})
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  inputName
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

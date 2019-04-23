@@ -27,7 +27,7 @@ export default class Park extends React.Component {
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('./Bar/bar.jpg'), {transition: 0.5})
+    Environment.setBackgroundImage(asset('./Bar/bar.jpg'))
   }
 
   removeWord(word) {

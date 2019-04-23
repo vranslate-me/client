@@ -16,7 +16,10 @@
     "react-360-keyboard": "^1.0.2",
     "react-360-web": "~1.1.0",
     "react-native": "~0.55.4",
+    "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "simple-raycaster": "^1.1.0",
     "three": "^0.87.0"
   },
