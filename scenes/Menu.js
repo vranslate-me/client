@@ -4,18 +4,19 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
+  asset,
   VrButton,
   NativeModules,
   Environment,
-  asset
 } from 'react-360';
 import { registerKeyboard } from 'react-360-keyboard';
 import axios from 'axios';
 import Scoreboard from '../components/Scoreboard';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { inputName, setLanguage } from '../store/actions'
+import { inputName, setLanguage } from '../store/actions';
 
 AppRegistry.registerComponent(...registerKeyboard);
 
@@ -29,13 +30,13 @@ class Menu extends React.Component {
     },
     annyang: NativeModules.Annyang,
     languages: [
-      {code: 'id', name: 'Indonesia'},
-      {code: 'ja', name: 'Japan'},
-      {code: 'zh-CN', name: 'Chinese'}, 
+      { code: 'id', name: 'Indonesia' },
+      { code: 'ja', name: 'Japan' },
+      { code: 'zh-CN', name: 'Chinese' },
     ],
     stage: [
-      {name: 'Living Room', level: 'level1'},
-      {name: 'Beach', level: 'level2'},
+      { name: 'Living Room', level: 'level1', image: asset('livingroom.jpg') },
+      { name: 'Beach', level: 'level2', image: asset('CannonBeach.jpg') },
     ]
   }
 
@@ -49,7 +50,7 @@ class Menu extends React.Component {
     let Park = data.filter(e => e.level === 1);
     let Room = data.filter(e => e.level === 2);
     let Bar = data.filter(e => e.level === 3);
-    
+
     this.setState({
       scores: {
         Park: Park,
@@ -57,7 +58,6 @@ class Menu extends React.Component {
         Bar: Bar
       }
     });
-    console.log(this.state.scores);
   }
 
   keyboardInput = () => {
@@ -76,21 +76,21 @@ class Menu extends React.Component {
   render() {
     return (
       <View
-        style={{
-          width: 1200,
-          height: 500,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
+      /* style={{
+        width: 1200,
+        height: 500,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }} */
       >
         <View style={{
           position: 'absolute',
           alignItems: 'center',
           transform: [
-            {translate: [-600, 0, 0]}
+            { translate: [-600, 0, 0] }
           ]
         }}>
-          <Text style={{fontSize: 50}}>Speech Language</Text>
+          <Text style={{ fontSize: 50 }}>Speech Language</Text>
           {
             this.state.languages.map((language, index) => {
               return (
@@ -118,27 +118,27 @@ class Menu extends React.Component {
           <View style={styles.menuContainer}>
             <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'center' }}>Welcome To Translate 360</Text>
             <VrButton
-              style={styles.customButton}
+              style={[styles.customButton, {marginTop: '10, !important'}]}
               onClick={this.keyboardInput}>
               <Text
                 style={{
                   fontSize: 30,
-                  fontWeight: 'bold',
                   textAlign: 'center'
-                }}>Input Your Name</Text>
+                }}>Click to enter your name</Text>
             </VrButton>
           </View>
           :
           <View style={styles.menuContainer}>
-            <Text style={{fontSize: 50}}>Welcome, {this.props.name}</Text>
+            <Text style={{ fontSize: 50 }}>Welcome, {this.props.name}</Text>
             {
               this.state.stage.map((item, index) => {
                 return (
                   <VrButton
-                    style={styles.customButton}
+                    style={[styles.thumbnailButton, { marginTop: '8, !important' }]}
                     onClick={() => this.props.history.push(`/${item.level}`)}
+                    key={item.name}
                   >
-                    <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold', textAlign: 'center' }}>{item.name}</Text>
+                    <Image source={item.image} style={{ width: 380, height: 130 }} />
                   </VrButton>
                 )
               })
@@ -152,15 +152,23 @@ class Menu extends React.Component {
 
 const styles = StyleSheet.create({
   customButton: {
-    width: 300,
-    padding: 30,
+    width: 350,
+    padding: 20,
     backgroundColor: '#151517',
     margin: 30,
-    alignItems: 'center'
+    justifyContent: 'space-between'
+  },
+  thumbnailButton: {
+    width: 380,
+    height: 130,
+    margin: 20
   },
   menuContainer: {
     height: 600,
+    width: 760,
     alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#fff',
     // justifyContent: 'space-around',
     padding: 30,
   }
