@@ -10,34 +10,35 @@ import {
 } from 'react-360';
 import Word from '../components/Word'
 
-// import Entity from 'Entity';
-// import Doggo from '../components/Doggo'
-// import Stone from '../components/Stone'
-
 //Audio Effect
 // const { AudioModule } = NativeModules;
 
 export default class Room extends React.Component {
   state = {
     words: [
-      {
-        active: false, word: 'tree', position: [2330, -30, 0],
-        /* height: 200 */
-      },
-      { active: false, word: 'sunset', position: [940, -220, 0] },
-      { active: false, word: 'stone', position: [370, -100, 0] },
+      {active: false, word: 'tree', position: [2330, 0, 0]},
+      { active: false, word: 'sunset', position: [940, -145, 0] },
+      { active: false, word: 'stone', position: [363, -37.5, 0] },
       { active: false, word: 'cloud', position: [1540, -30, 0] },
       { active: false, word: 'cliffs', position: [3600, -5, 0] },
     ],
-    // dog: {
-    //   scale: 1.3,
-    //   borderWidth: 3,
-    //   borderColor: 'lightgrey',
-    // }
+    score: 0,
+    totalWords: 0
   }
 
   componentDidMount() {
     Environment.setBackgroundImage(asset('CannonBeach.jpg'), { transition: 0.5, format: '2D' })
+  }
+
+  async backToMenu() {
+    const data = {
+      name: this.props.name,
+      level: 1,
+      score: this.state.score / this.state.totalWords * 100,
+      lang: this.props.languageName
+    }
+    console.log(data)
+    await this.props.dbAddScore(data, this.props.history)
   }
 
   removeWord(word) {
