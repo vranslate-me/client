@@ -6,7 +6,8 @@ import {
   View,
   VrButton,
   Environment,
-  asset
+  asset,
+  NativeModules
 } from 'react-360';
 
 import Word from '../components/Word'
@@ -18,11 +19,12 @@ import { dbAddScore } from '../store/actions';
 class LivingRoom extends React.Component {
   state = {
     words: [
-      {active: false, word: 'Art', position: [1500, -50, 0]}, 
-      {active: false, word: 'Mirror', position: [3100, -20, 0]},
-      {active: false, word: 'Plant', position: [2100, -200, 0]},
-      {active: false, word: 'Book', position: [1400, -300, 0]},
-      {active: false, word: 'Door', position: [2700, -100, 0]},
+      {active: false, word: 'Art', position: [1500, -200, 0]}, 
+      {active: false, word: 'Mirror', position: [3075, -170, 0]},
+      {active: false, word: 'Plant', position: [2100, -320, 0]},
+      {active: false, word: 'Book', position: [1400, -520, 0]},
+      {active: false, word: 'Door', position: [2650, -220, 0]},
+      {active: false, word: 'Kitchen', position: [400, -200, 0]},
     ],
     score: 0,
     totalWords: 0
@@ -60,7 +62,7 @@ class LivingRoom extends React.Component {
     })
   }
 
-  toggleActive(bool, index, word) {
+  toggleActive(bool, index) {
     let data = []
     for (let i = 0; i < this.state.words.length; i++) {
       let obj = {
@@ -83,7 +85,7 @@ class LivingRoom extends React.Component {
       <View
         style={{
           width: 4000,
-          height: 500,
+          height: 720,
           // justifyContent: 'center',
           // alignItems: 'center'
         }}
@@ -115,8 +117,8 @@ class LivingRoom extends React.Component {
                     { translate: item.position }
                   ]
                 }}
-                onEnter={() => this.toggleActive(true, index, item.word)}
-                onExit={() => this.toggleActive(false, index, item.word)}
+                onEnter={() => this.toggleActive(true, index)}
+                onExit={() => this.toggleActive(false, index)}
                 key={item.word}
               >
                 <Word word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />
