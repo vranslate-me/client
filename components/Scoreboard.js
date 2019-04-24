@@ -10,7 +10,7 @@ export default class Scoreboard extends Component {
           {Object.keys(this.props.scores).map(lvl => {
             return (
               <View key={lvl} style={{ flexDirection: 'column', alignItems: 'center' }}>
-                <Text style={{ alignSelf: 'center', fontSize: 30 }}>{lvl}</Text>
+                <Text style={{ alignSelf: 'center', fontSize: 30, fontWeight: 'bold' }}>{lvl}</Text>
                 <View style={{ flexDirection: 'row', marginBottom: 20, borderBottomWidth: 2, borderColor: 'white' }}>
                   <Text style={style.drow}>Name</Text>
                   <Text style={style.drow}>Score</Text>
@@ -21,7 +21,7 @@ export default class Scoreboard extends Component {
                     <Text>Loading ...</Text>
                     :
                     this.props.scores[lvl].length === 0 ?
-                      <Text>No Player</Text>
+                      <Text style={style.drow}>No Player</Text>
                       :
                       this.props.scores[lvl].map(e => {
                         return (
@@ -51,12 +51,14 @@ const style = StyleSheet.create({
     ],
     position: 'absolute',
     width: 900,
-    height: 720,
+    height: 630,
+    backgroundColor: 'black',
     alignItems: 'center',
   },
   title: {
     textAlign: 'center',
-    fontSize: 50
+    fontSize: 50,
+    fontWeight: 'bold'
   },
   scores: {
     marginHorizontal: 20,
@@ -66,6 +68,7 @@ const style = StyleSheet.create({
     width: 130,
     height: 30,
     fontSize: 25,
+    fontWeight: 'bold',
     textAlign: 'center',
     // marginBottom: 20,
     borderBottomWidth: 1,

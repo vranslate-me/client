@@ -45,7 +45,7 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('360_world.jpg'))
+    Environment.setBackgroundImage(asset('bg_360.jpg'))
     this.props.dbFetchScore()
   }
 
@@ -85,10 +85,10 @@ class Menu extends React.Component {
           position: 'absolute',
           alignItems: 'center',
           transform: [
-            { translate: [-600, 0, 0] }
+            { translate: [-380, 0, 0] }
           ]
         }}>
-          <Text style={{ fontSize: 50 }}>Speech Language</Text>
+          <Text style={{ fontSize: 50, fontWeight: 'bold' }}>Speech Language</Text>
           {
             this.state.languages.map((language, index) => {
               return (
@@ -128,20 +128,21 @@ class Menu extends React.Component {
         <Scoreboard scores={this.props.scores} />
         {!this.props.name ?
           <View style={styles.menuContainer}>
-            <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'center' }}>Welcome To Translate 360</Text>
+            <Text style={{ color: 'white', fontSize: 80, fontWeight: 'bold', textAlign: 'center' }}>Welcome To Translate 360</Text>
             <VrButton
-              style={[styles.customButton, { marginTop: '10, !important' }]}
+              style={[styles.customButton, { marginTop: '10 !important', width: 400 }]}
               onClick={this.keyboardInput}>
               <Text
                 style={{
-                  fontSize: 30,
-                  textAlign: 'center'
-                }}>Click to enter your name</Text>
+                  fontSize: 50,
+                  textAlign: 'center',
+                  fontWeight: 'bold'
+                }}>Input your name</Text>
             </VrButton>
           </View>
           :
           <View style={styles.menuContainer}>
-            <Text style={{ fontSize: 50 }}>Welcome, {this.props.name}</Text>
+            <Text style={{ fontSize: 50, fontWeight: 'bold' }}>Welcome, {this.props.name}</Text>
             {
               this.state.stage.map((item, index) => {
                 return (
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     height: 600,
-    width: 760,
+    width: 980,
     alignItems: 'center',
     // borderWidth: 2,
     // borderColor: '#fff',
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
   },
   btnSelected: {
     borderColor: 'skyblue',
-    borderWidth: 2
+    borderWidth: 3
   }
 })
 
