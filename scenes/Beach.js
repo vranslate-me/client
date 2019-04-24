@@ -23,7 +23,7 @@ class Beach extends React.Component {
       {active: false, word: 'tree', position: [2330, -110, 0]},
       { active: false, word: 'sunset', position: [940, -300, 0] },
       { active: false, word: 'stone', position: [363, -200, 0] },
-      { active: false, word: 'ocean', position: [1300, -330, 0] },
+      { active: false, word: 'the sea', position: [1300, -330, 0] },
       { active: false, word: 'sand', position: [3850, -565, 0] },
     ],
     score: 0,
