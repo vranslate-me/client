@@ -31,7 +31,7 @@ class Menu extends React.Component {
     },
     annyang: NativeModules.Annyang,
     languages: [
-      { code: 'id', name: 'Indonesia', flag: asset('./Flags/Indonesia.png'), anthem: asset('./Anthem/Indonesia.mp3')},
+      { code: 'id', name: 'Indonesia', flag: asset('./Flags/Indonesia.png'), anthem: asset('./Anthem/Indonesia.mp3') },
       { code: 'ja', name: 'Japan', flag: asset('./Flags/Japan.png'), anthem: asset('./Anthem/Japan.mp3') },
       { code: 'zh-CN', name: 'Chinese', flag: asset('./Flags/China.png'), anthem: asset('./Anthem/China.mp3') },
       { code: 'ru', name: 'Russia', flag: asset('./Flags/Russia.png'), anthem: asset('./Anthem/Russia.mp3') },
@@ -93,15 +93,17 @@ class Menu extends React.Component {
             this.state.languages.map((language, index) => {
               return (
                 <View
-                    onEnter={() => {this.playAnthem(index)}}
-                    onExit={() => AudioModule.stopEnvironmental()}
-                    key={language.code}
+                  onEnter={() => { this.playAnthem(index) }}
+                  onExit={() => AudioModule.stopEnvironmental()}
+                  key={language.code}
                 >
-                  <VrButton onClick={() => this.selectLanguage(language)}>
-                      <Image
-                        source={language.flag}
-                        style={styles.customFlag}
-                      />
+                  <VrButton
+                    style={(language.code === this.props.language) ? styles.btnSelected : null}
+                    onClick={() => this.selectLanguage(language)}>
+                    <Image
+                      source={language.flag}
+                      style={styles.customFlag}
+                    />
                   </VrButton>
                 </View>
                 // <VrButton
@@ -128,7 +130,7 @@ class Menu extends React.Component {
           <View style={styles.menuContainer}>
             <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'center' }}>Welcome To Translate 360</Text>
             <VrButton
-              style={[styles.customButton, {marginTop: '10, !important'}]}
+              style={[styles.customButton, { marginTop: '10, !important' }]}
               onClick={this.keyboardInput}>
               <Text
                 style={{
@@ -185,10 +187,14 @@ const styles = StyleSheet.create({
     height: 600,
     width: 760,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#fff',
+    // borderWidth: 2,
+    // borderColor: '#fff',
     // justifyContent: 'space-around',
     padding: 30,
+  },
+  btnSelected: {
+    borderColor: 'skyblue',
+    borderWidth: 2
   }
 })
 

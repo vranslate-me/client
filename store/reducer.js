@@ -2,7 +2,7 @@ import * as types from './actionTypes'
 
 const initialState = {
   loading: false,
-  name: 'a',
+  name: '',
   language: 'id',
   languageName: 'Indonesia',
   scores: {
