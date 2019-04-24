@@ -65,7 +65,9 @@ class Menu extends React.Component {
   playAnthem = (index) => {
     AudioModule.playEnvironmental({
       source: this.state.languages[index].anthem,
-      volume: 0.3
+      volume: 0.3,
+      // is3d: true
+      // fadeTime: 3000
     })
   }
 
