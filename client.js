@@ -18,9 +18,9 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
-  const s = r360.getDefaultSurface()
-  s.setShape(Surface.SurfaceShape.Cylinder)
-  s.resize(4096, 720)
+  const s = new Surface(4096, 720, Surface.SurfaceShape.Cylinder)
+  // s.setShape()
+  // s.resize(4096, 720)
 
   // Render your app content to the default cylinder surface
   r360.renderToSurface(

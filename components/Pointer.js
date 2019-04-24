@@ -23,7 +23,7 @@ export default class Pointer extends React.Component {
       this.animatedValue,
       {
         toValue: 1,
-        duration: 3000,
+        duration: 2000,
         easing: Easing.linear
       }
     ).start(() => this.animate())
@@ -32,7 +32,7 @@ export default class Pointer extends React.Component {
   render() {
     const rotate = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ['0deg', '360deg']
+      outputRange: ['0deg', '180deg']
     })
     const bounce = this.animatedValue.interpolate({
       inputRange: [0, 0.5, 1],
@@ -48,7 +48,7 @@ export default class Pointer extends React.Component {
           transform: [
             { translateY: bounce },
             { rotateY: rotate },
-            { scale: 50 }
+            { scale: 70 }
           ]
         }}
       />

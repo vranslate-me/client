@@ -27,7 +27,7 @@ export default class Scoreboard extends Component {
                         return (
                           <View key={e._id} style={{ flexDirection: 'row' }}>
                             <Text style={style.drow}>{e.name}</Text>
-                            <Text style={style.drow}>{e.score}</Text>
+                            <Text style={style.drow}>{Math.round(e.score)}</Text>
                             <Text style={style.drow}>{e.language}</Text>
                           </View>
                         )

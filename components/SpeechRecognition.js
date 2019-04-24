@@ -31,7 +31,7 @@ class SpeechRecognition extends React.Component {
 
         if(output) {
           console.log(output)
-          const { data } = await axios.post(`http://translate360.mahdihrs.world/translate/${this.props.language}`, {
+          const { data } = await axios.post(`https://31d06abb.ngrok.io/translate/${this.props.language}`, {
             word: output
           })
           this.setState({ interactionActive: false });
@@ -64,7 +64,8 @@ class SpeechRecognition extends React.Component {
           }}
           onEnter={ this.onGazeEnter.bind(this) }
         >
-          {output}
+          {/* {output} */}
+          <Text></Text>
         </View>
       );
     }
