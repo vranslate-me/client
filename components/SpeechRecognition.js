@@ -24,13 +24,13 @@ class SpeechRecognition extends React.Component {
 
     async onGazeEnter() {
       try {
-        console.log('Active');
+        // console.log('Active');
 
         // Start capturing voice
         var output = await this.state.annyang.start();
 
         if(output) {
-          console.log(output)
+          // console.log(output)
           const { data } = await axios.post(`https://31d06abb.ngrok.io/translate/${this.props.language}`, {
             word: output
           })
@@ -42,7 +42,9 @@ class SpeechRecognition extends React.Component {
         // Stop
         this.state.annyang.stop();
 
-      } catch(e) { console.log(e); }
+      } catch(e) { 
+        // console.log(e); 
+      }
     }
 
     render() {

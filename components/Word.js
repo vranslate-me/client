@@ -12,11 +12,11 @@ export default class Word extends Component {
   }
 
   speechRetriever(word, translated) {
-    console.log(this.props.word, 'kata yang di tes')
-    console.log(translated, 'hasil google translate')
+    // console.log(this.props.word, 'kata yang di tes')
+    // console.log(translated, 'hasil google translate')
 
     if(translated === this.props.word.toLowerCase() && word.toLowerCase() !== this.props.word.toLowerCase()) {
-      console.log('poof')
+      // console.log('poof')
       AudioModule.playOneShot({
         source: asset('./Bar/wowwww.mp3'),
         volume: 0.3,

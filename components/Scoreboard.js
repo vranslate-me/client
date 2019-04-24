@@ -7,16 +7,16 @@ export default class Scoreboard extends Component {
       <View style={style.scoreboard}>
         <Text style={style.title}>Scoreboard</Text>
         <View style={style.scores}>
-          {Object.keys(this.props.scores).map(lvl => {
+          {Object.keys(this.props.scores).map((lvl, index) => {
             return (
-              <View key={lvl} style={{ flexDirection: 'column', alignItems: 'center' }}>
+              <View key={lvl} style={{ flexDirection: 'column', alignItems: 'center', backgroundColor: 'black', borderRightWidth: index === 0 ? 3 : 0, borderColor: 'white' }}>
                 <Text style={{ alignSelf: 'center', fontSize: 30, fontWeight: 'bold' }}>{lvl}</Text>
-                <View style={{ flexDirection: 'row', marginBottom: 20, borderBottomWidth: 2, borderColor: 'white' }}>
+                <View style={{ flexDirection: 'row', marginBottom: 0, borderBottomWidth: 2, borderColor: 'white' }}>
                   <Text style={style.drow}>Name</Text>
                   <Text style={style.drow}>Score</Text>
                   <Text style={style.drow}>Language</Text>
                 </View>
-                <View style={{ position: 'absolute', transform: [{ translate: [0, -100, 0] }] }}>
+                <View style={{ position: 'absolute', paddingTop: 10, transform: [{ translate: [0, -65, 0] }], backgroundColor: 'black', minHeight: 400, width: 395 }}>
                   {!this.props.scores[lvl] ?
                     <Text>Loading ...</Text>
                     :
@@ -44,30 +44,34 @@ export default class Scoreboard extends Component {
 
 const style = StyleSheet.create({
   scoreboard: {
-    borderWidth: 4,
-    borderColor: '#fff',
+    // borderWidth: 4,
+    // borderColor: '#fff',
     transform: [
       { translate: [1000, 0, 0] },
     ],
     position: 'absolute',
     width: 900,
     height: 630,
-    backgroundColor: 'black',
+    // backgroundColor: 'black',
     alignItems: 'center',
   },
   title: {
     textAlign: 'center',
     fontSize: 50,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    width: 785,
+    backgroundColor: 'black'
   },
   scores: {
     marginHorizontal: 20,
     flexDirection: 'row',
+    backgroundColor: 'black',
   },
   drow: {
     width: 130,
     height: 30,
     fontSize: 25,
+    color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
     // marginBottom: 20,

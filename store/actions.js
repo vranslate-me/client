@@ -16,7 +16,7 @@ export function dbFetchScore() {
       Room,
       Beach
     }
-
+    
     dispatch(dbFetchScoreSuccess(scores))
   }
 }

@@ -125,7 +125,7 @@ class Beach extends React.Component {
 
         {
           this.state.words.map((item, index) => {
-            console.log(item)
+            // console.log(item)
             return (
               <View
                 style={{

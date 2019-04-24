@@ -10,7 +10,6 @@ import store from './store'
 import Menu from './scenes/Menu'
 import LivingRoom from './scenes/LivingRoom'
 import Beach from './scenes/Beach'
-import Bar from './scenes/Bar'
 
 export default class VR extends React.Component {
   render() {
@@ -30,7 +29,6 @@ export default class VR extends React.Component {
             <Route exact path="/" component={Menu} />
             <Route exact path="/level1" component={LivingRoom} />
             <Route exact path="/level2" component={Beach} />
-            <Route exact path="/level3" component={Bar} />
           </View>
         </Router>
       </Provider>

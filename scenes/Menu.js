@@ -85,8 +85,10 @@ class Menu extends React.Component {
           position: 'absolute',
           alignItems: 'center',
           transform: [
-            { translate: [-380, 0, 0] }
-          ]
+            { translate: [-550, 0, 0] }
+          ],
+          backgroundColor: 'black',
+          width: 500
         }}>
           <Text style={{ fontSize: 50, fontWeight: 'bold' }}>Speech Language</Text>
           {
@@ -142,7 +144,7 @@ class Menu extends React.Component {
           </View>
           :
           <View style={styles.menuContainer}>
-            <Text style={{ fontSize: 50, fontWeight: 'bold' }}>Welcome, {this.props.name}</Text>
+            <Text style={{ fontSize: 70, fontWeight: 'bold' }}>Welcome, {this.props.name}</Text>
             {
               this.state.stage.map((item, index) => {
                 return (

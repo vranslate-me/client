@@ -11,7 +11,7 @@ export default class Annyang extends Module {
     this._rnctx = ctx;
 
     if(annyang)
-      console.log("annyang init success");
+      // console.log("annyang init success");
       annyang.setLanguage('id')
   }
 
@@ -22,7 +22,7 @@ export default class Annyang extends Module {
 
   setLanguage(language) {
     if(annyang) {
-      console.log('set language to', language)
+      // console.log('set language to', language)
       annyang.setLanguage(language)
     }
   }
@@ -55,13 +55,13 @@ export default class Annyang extends Module {
       stop();
     }
     // Start again
-    console.log("Start");
+    // console.log("Start");
     annyang.start();
   }
 
   stop() {
     annyang.abort()
-    console.log("Stop")
+    // console.log("Stop")
   }
 
 }
