@@ -49,7 +49,7 @@ export default class Word extends Component {
       >   
         <Pointer />     
         {/* <Text style={{color: 'red', fontSize: 50}}>{this.props.word}</Text> */}
-        {/* <Text style={{color: 'red', fontSize: 50}}>{this.state.spokenWords}</Text> */}
+        <Text style={{color: 'red', fontSize: 70}}>{this.state.spokenWords}</Text>
         {recording}
       </View>
     )
