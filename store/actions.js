@@ -5,7 +5,7 @@ export function dbFetchScore() {
   return async (dispatch) => {
     dispatch(loading())
     const { data } = await axios({
-      url: 'http://translate360.mahdihrs.world/scores',
+      url: 'https://31d06abb.ngrok.io/scores',
       method: 'get'
     })
 
@@ -24,7 +24,7 @@ export function dbFetchScore() {
 export function dbAddScore(data, history) {
   return (dispatch) => {
     dispatch(loading())
-    axios.post('http://translate360.mahdihrs.world//scores', {
+    axios.post('https://31d06abb.ngrok.io/scores', {
       ...data
     })
     .then(({ data }) => {

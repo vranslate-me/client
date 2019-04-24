@@ -22,9 +22,9 @@ class LivingRoom extends React.Component {
       {active: false, word: 'Art', position: [1500, -200, 0]}, 
       {active: false, word: 'Mirror', position: [3075, -170, 0]},
       {active: false, word: 'Plant', position: [2100, -320, 0]},
-      {active: false, word: 'Book', position: [1400, -520, 0]},
+      {active: false, word: 'Book', position: [1420, -470, 0]},
       {active: false, word: 'Door', position: [2650, -220, 0]},
-      {active: false, word: 'Kitchen', position: [400, -200, 0]},
+      {active: false, word: 'Kitchen', position: [450, -200, 0]},
     ],
     score: 0,
     totalWords: 0
@@ -37,15 +37,14 @@ class LivingRoom extends React.Component {
     })
   }
 
-  async backToMenu() {
+  backToMenu() {
     const data = {
       name: this.props.name,
       level: 1,
       score: this.state.score / this.state.totalWords * 100,
       lang: this.props.languageName
     }
-    console.log(data)
-    await this.props.dbAddScore(data, this.props.history)
+    this.props.dbAddScore(data, this.props.history)
   }
 
   removeWord(word) {
@@ -55,7 +54,6 @@ class LivingRoom extends React.Component {
         data.push(this.state.words[i])
       }
     }
-    console.log(data)
     this.setState({
       words: data,
       score: this.state.score + 1
@@ -93,8 +91,8 @@ class LivingRoom extends React.Component {
 
         <VrButton
           style={{
-            width: 200,
-            height: 50,
+            width: 240,
+            height: 60,
             backgroundColor: 'black',
             alignSelf: 'center',
             justifyContent: 'center',
@@ -102,8 +100,26 @@ class LivingRoom extends React.Component {
           }}
           onClick={() => this.backToMenu()}
         >
-          <Text style={{ color: 'white' }}>Back to Menu</Text>
+          <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
         </VrButton>
+
+        {
+          this.state.score === this.state.totalWords ? 
+          <View
+            style={{
+              width: 300,
+              height: 70,
+              marginTop: 100,
+              backgroundColor: 'black',
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Text style={{fontSize: 60}}>You did it!</Text>
+          </View> :
+          null
+        }
 
         {
           this.state.words.map((item, index) => {

@@ -10,35 +10,41 @@ import {
 } from 'react-360';
 import Word from '../components/Word'
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { dbAddScore } from '../store/actions';
+
 //Audio Effect
 // const { AudioModule } = NativeModules;
 
-export default class Room extends React.Component {
+class Beach extends React.Component {
   state = {
     words: [
-      {active: false, word: 'tree', position: [2330, 0, 0]},
-      { active: false, word: 'sunset', position: [940, -145, 0] },
-      { active: false, word: 'stone', position: [363, -37.5, 0] },
-      { active: false, word: 'cloud', position: [1540, -30, 0] },
-      { active: false, word: 'cliffs', position: [3600, -5, 0] },
+      {active: false, word: 'tree', position: [2330, -110, 0]},
+      { active: false, word: 'sunset', position: [940, -300, 0] },
+      { active: false, word: 'stone', position: [363, -200, 0] },
+      { active: false, word: 'ocean', position: [1300, -330, 0] },
+      { active: false, word: 'sand', position: [3850, -565, 0] },
     ],
     score: 0,
     totalWords: 0
   }
 
   componentDidMount() {
-    Environment.setBackgroundImage(asset('CannonBeach.jpg'), { transition: 0.5, format: '2D' })
+    Environment.setBackgroundImage(asset('CannonBeach.jpg'))
+    this.setState({
+      totalWords: this.state.words.length
+    })
   }
 
-  async backToMenu() {
+  backToMenu() {
     const data = {
       name: this.props.name,
       level: 1,
       score: this.state.score / this.state.totalWords * 100,
       lang: this.props.languageName
     }
-    console.log(data)
-    await this.props.dbAddScore(data, this.props.history)
+    this.props.dbAddScore(data, this.props.history)
   }
 
   removeWord(word) {
@@ -48,13 +54,13 @@ export default class Room extends React.Component {
         data.push(this.state.words[i])
       }
     }
-    console.log(data)
     this.setState({
-      words: data
+      words: data,
+      score: this.state.score + 1
     })
   }
 
-  toggleActive(bool, index, word) {
+  toggleActive(bool, index) {
     let data = []
     for (let i = 0; i < this.state.words.length; i++) {
       let obj = {
@@ -64,19 +70,6 @@ export default class Room extends React.Component {
       }
       if (i === index) {
         obj.active = bool
-        // if (obj.active) {
-        // AudioModule.playEnvironmental({
-        //   source: asset('./Bar/ticktock.mp3'),
-        //   volume: 0.3,
-        // })
-        // if (name === 'dog') {
-        //   this.setState({ dog: { ...this.state.dog, scale: 2.15, borderWidth: 0 } })
-        // }
-        // }
-        // else {
-        //   AudioModule.stopEnvironmental()
-        //   if (name === 'dog') this.setState({ dog: { ...this.state.dog, scale: 1.3, borderWidth: 3 } })
-        // }
       }
       data.push(obj)
     }
@@ -90,15 +83,15 @@ export default class Room extends React.Component {
       <View
         style={{
           width: 4000,
-          height: 500,
+          height: 720,
           // justifyContent: 'center',
           // alignItems: 'center'
         }}
       >
         <VrButton
           style={{
-            width: 200,
-            height: 50,
+            width: 240,
+            height: 60,
             backgroundColor: 'black',
             alignSelf: 'center',
             justifyContent: 'center',
@@ -106,11 +99,29 @@ export default class Room extends React.Component {
           }}
           onClick={() => this.props.history.push('/')}
         >
-          <Text style={{ color: 'white' }}>Back to Menu</Text>
+          <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
         </VrButton>
 
         {/* <Stone /> */}
         {/* <Doggo scale={this.state.dog.scale} /> */}
+
+        {
+          this.state.score === this.state.totalWords ? 
+          <View
+            style={{
+              width: 300,
+              height: 70,
+              marginTop: 100,
+              backgroundColor: 'black',
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Text style={{fontSize: 60}}>You did it!</Text>
+          </View> :
+          null
+        }
 
         {
           this.state.words.map((item, index) => {
@@ -139,3 +150,15 @@ export default class Room extends React.Component {
     );
   }
 };
+
+const mapStateToProps = (state) => ({
+  loading: state.loading,
+  name: state.name,
+  languageName: state.languageName
+})
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  dbAddScore
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Beach)

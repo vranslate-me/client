@@ -48,7 +48,7 @@ export default class Pointer extends React.Component {
           transform: [
             { translateY: bounce },
             { rotateY: rotate },
-            { scale: 50 }
+            { scale: 70 }
           ]
         }}
       />

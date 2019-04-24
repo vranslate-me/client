@@ -41,15 +41,15 @@ export default class Word extends Component {
       <View
         style={{
           width: '100%',
-          height: 150,
-          borderWidth: 3,
-          borderColor: 'lightgrey',
+          minHeight: 150,
+          borderWidth: 5,
+          borderColor: 'green',
           alignItems: 'center'
         }}
       >   
         <Pointer />     
-        <Text style={{color: 'red', fontSize: 50}}>{this.props.word}</Text>
-        <Text style={{color: 'red', fontSize: 50}}>{this.state.spokenWords}</Text>
+        {/* <Text style={{color: 'red', fontSize: 50}}>{this.props.word}</Text> */}
+        {/* <Text style={{color: 'red', fontSize: 50}}>{this.state.spokenWords}</Text> */}
         {recording}
       </View>
     )
