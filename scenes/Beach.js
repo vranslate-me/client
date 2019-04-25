@@ -88,19 +88,22 @@ class Beach extends React.Component {
           // alignItems: 'center'
         }}
       >
-        <VrButton
-          style={{
-            width: 240,
-            height: 60,
-            backgroundColor: 'black',
-            alignSelf: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-          onClick={() => this.backToMenu()}
-        >
-          <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
-        </VrButton>
+        {
+          !this.props.loading ?
+          <VrButton
+            style={{
+              width: 240,
+              height: 60,
+              backgroundColor: 'black',
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            onClick={() => this.backToMenu()}
+          >
+            <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
+          </VrButton> : null
+        }
 
         {/* <Stone /> */}
         {/* <Doggo scale={this.state.dog.scale} /> */}
@@ -138,7 +141,7 @@ class Beach extends React.Component {
                 }}
                 onEnter={() => this.toggleActive(true, index, item.word)}
                 onExit={() => this.toggleActive(false, index, item.word)}
-                key={index}
+                key={item.word}
               >
                 {/* <Word borderW={this.state[item.word].borderWidth} word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} /> */}
                 <Word word={item.word} removeWord={this.removeWord.bind(this)} enableSpeaking={item.active} />

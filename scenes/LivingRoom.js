@@ -89,19 +89,22 @@ class LivingRoom extends React.Component {
         }}
       >
 
-        <VrButton
-          style={{
-            width: 240,
-            height: 60,
-            backgroundColor: 'black',
-            alignSelf: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-          onClick={() => this.backToMenu()}
-        >
-          <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
-        </VrButton>
+        {
+          !this.props.loading ?
+          <VrButton
+            style={{
+              width: 240,
+              height: 60,
+              backgroundColor: 'black',
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            onClick={() => this.backToMenu()}
+          >
+            <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
+          </VrButton> : null
+        }
 
         {
           this.state.score === this.state.totalWords ? 

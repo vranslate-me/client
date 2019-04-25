@@ -12,10 +12,10 @@ export default class Word extends Component {
   }
 
   speechRetriever(word, translated) {
-    console.log(word, '= kata yang di eja')
-    console.log(translated, '= hasil google translate')
+    // console.log(word, '= kata yang di eja')
+    // console.log(translated, '= hasil google translate')
 
-    if(this.props.word.toLowerCase().search(translated.toLowerCase()) !== -1 && word.toLowerCase() !== this.props.word.toLowerCase()) {
+    if(translated.toLowerCase().search(this.props.word.toLowerCase()) !== -1 && word.toLowerCase() !== this.props.word.toLowerCase()) {
       // console.log('poof')
       AudioModule.playOneShot({
         source: asset('./Bar/wowwww.mp3'),
