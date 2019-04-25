@@ -11,7 +11,6 @@ import {
   Environment,
 } from 'react-360';
 import { registerKeyboard } from 'react-360-keyboard';
-import axios from 'axios';
 import Scoreboard from '../components/Scoreboard';
 
 import { connect } from 'react-redux';

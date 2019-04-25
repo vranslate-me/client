@@ -21,7 +21,7 @@ export default class VR extends React.Component {
               width: 4096,
               height: 720,
               borderWidth: 1,
-              borderColor: 'rgba(255, 255, 255, 0.01)',//'white',
+              borderColor: 'rgba(255, 255, 255, 0.01)',
               justifyContent: 'center',
               alignItems: 'center'
             }}
