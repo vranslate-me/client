@@ -23,7 +23,7 @@ class Beach extends React.Component {
       {active: false, word: 'tree', position: [2330, -110, 0]},
       { active: false, word: 'sunset', position: [940, -300, 0] },
       { active: false, word: 'stone', position: [363, -200, 0] },
-      { active: false, word: 'the sea', position: [1300, -330, 0] },
+      { active: false, word: 'sea', position: [1300, -330, 0] },
       { active: false, word: 'sand', position: [3850, -565, 0] },
     ],
     score: 0,
@@ -40,7 +40,7 @@ class Beach extends React.Component {
   backToMenu() {
     const data = {
       name: this.props.name,
-      level: 1,
+      level: 2,
       score: this.state.score / this.state.totalWords * 100,
       lang: this.props.languageName
     }
@@ -97,7 +97,7 @@ class Beach extends React.Component {
             justifyContent: 'center',
             alignItems: 'center'
           }}
-          onClick={() => this.props.history.push('/')}
+          onClick={() => this.backToMenu()}
         >
           <Text style={{ color: 'white', fontSize: 40 }}>Back to Menu</Text>
         </VrButton>

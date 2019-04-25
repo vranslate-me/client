@@ -8,7 +8,6 @@ export function dbFetchScore() {
   return async (dispatch) => {
     dispatch(loading())
     const { data } = await server.get('/scores')
-    console.log(data)
     // const { data } = await axios({
     //   url: 'https://31d06abb.ngrok.io/scores',
     //   method: 'get'
@@ -21,7 +20,6 @@ export function dbFetchScore() {
       Room,
       Beach
     }
-    
     dispatch(dbFetchScoreSuccess(scores))
   }
 }

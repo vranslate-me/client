@@ -12,7 +12,6 @@ import {
 import server from '../server/api'
 
 import { connect } from 'react-redux'
-import console = require('console');
 
 const { AudioModule } = NativeModules
 
