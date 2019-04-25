@@ -6,9 +6,13 @@ import {
   Environment,
 } from 'react-360';
 
-import axios from 'axios'
+// import axios from 'axios'
+
+//server
+import server from '../server/api'
 
 import { connect } from 'react-redux'
+import console = require('console');
 
 const { AudioModule } = NativeModules
 
@@ -31,9 +35,16 @@ class SpeechRecognition extends React.Component {
 
         if(output) {
           // console.log(output)
-          const { data } = await axios.post(`https://31d06abb.ngrok.io/translate/${this.props.language}`, {
-            word: output
+          const { data } = await server({
+            url: `/translate/${this.props.language}`,
+            method: 'post',
+            data: {
+              word: output
+            }
           })
+          // const { data } = await server(`/translate/${this.props.language}`, { //axios.post(`https://31d06abb.ngrok.io/translate/${this.props.language}`, {
+          //   word: output
+          // })
           this.setState({ interactionActive: false });
           this.props.outputHandler(output, data.translated.toLowerCase());
           AudioModule.stopEnvironmental()

@@ -1,13 +1,18 @@
 import * as types from './actionTypes'
-import axios from 'axios'
+// import axios from 'axios'
+
+//server
+import server from '../server/api'
 
 export function dbFetchScore() {
   return async (dispatch) => {
     dispatch(loading())
-    const { data } = await axios({
-      url: 'https://31d06abb.ngrok.io/scores',
-      method: 'get'
-    })
+    const { data } = await server.get('/scores')
+    console.log(data)
+    // const { data } = await axios({
+    //   url: 'https://31d06abb.ngrok.io/scores',
+    //   method: 'get'
+    // })
 
     const Room = data.filter(e => e.level === 1);
     const Beach = data.filter(e => e.level === 2);
@@ -24,9 +29,15 @@ export function dbFetchScore() {
 export function dbAddScore(data, history) {
   return (dispatch) => {
     dispatch(loading())
-    axios.post('https://31d06abb.ngrok.io/scores', {
-      ...data
+    server({
+      url: `/scores`,
+      method: 'post',
+      data: { ...data }
     })
+
+    // axios.post('https://31d06abb.ngrok.io/scores', {
+    //   ...data
+    // })
     .then(({ data }) => {
       dispatch(dbAddScoreSuccess())
       history.push('/')
